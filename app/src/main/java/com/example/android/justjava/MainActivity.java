@@ -31,18 +31,28 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = calculatePrice();
-        String priceMessage = "Total: $" + price;
-        priceMessage = priceMessage + "\nThank you!";
-        displayMessage(priceMessage);
+        String orderSummaryBook = createOrderSummary(price);
+        displayMessage(orderSummaryBook);
     }
 
     /**
      * Calculates the price of the order.
      *
+     * @return total price
      */
     private int calculatePrice(){
-        int price = quantity * 5;
-        return price;
+        return quantity * 5;
+    }
+
+    /**
+     * This method create summary of ther order that contain name, quantity and price
+     *
+     * @param price of the order
+     * @return text summary
+     */
+    private String createOrderSummary(int price){
+        String orderSummary = "Name: Kaptain Kunal\nQuantity: " + quantity + "\nTotal : $" + price + "\nThank you!";
+        return orderSummary;
     }
 
     /**
