@@ -10,14 +10,17 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 /**
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-
+    // quantity of coffee
     int quantity = 0;
+    // whipped cream checkbox
+    boolean hasWhippedCream = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,18 @@ public class MainActivity extends AppCompatActivity {
         displayMessage(orderSummaryBook);
     }
 
+    public void onCheckBoxClicked(View view){
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // check the hasWhippedCream state
+        if (checked)
+            hasWhippedCream = true;
+        else
+            hasWhippedCream = false;
+
+    }
+
     /**
      * Calculates the price of the order.
      *
@@ -44,13 +59,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method create summary of ther order that contain name, quantity and price
+     * This method create summary of the order that contain name, quantity and price
      *
      * @param price of the order
      * @return text summary
      */
     private String createOrderSummary(int price){
-        String orderSummary = "Name: Kaptain Kunal\nQuantity: " + quantity + "\nTotal : $" + price + "\nThank you!";
+        String orderSummary = "Name: Kaptain Kunal";
+        orderSummary += "\nAdd whipped cream? " + hasWhippedCream;
+        orderSummary += "\nQuantity: " + quantity;
+        orderSummary += "\nTotal : $" + price;
+        orderSummary += "\nThank you!";
         return orderSummary;
     }
 
