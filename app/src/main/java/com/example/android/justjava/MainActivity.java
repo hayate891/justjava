@@ -19,8 +19,10 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     // quantity of coffee
     int quantity = 0;
-    // whipped cream checkbox
+    // whipped cream checkbox variable
     boolean hasWhippedCream = false;
+    // chocolate checkbox variable
+    boolean hasChocolate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +35,31 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = calculatePrice();
+
         String orderSummaryBook = createOrderSummary(price);
         displayMessage(orderSummaryBook);
     }
 
+    /**
+     * The method check on the whipped cream checkbox state
+     * this method is not wrong but different than what Katherine
+     * use in the tutorial
+     * Katherine use casting on the CheckBox subclass
+     */
     public void onCheckBoxClicked(View view){
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        hasWhippedCream = whippedCreamCheckBox.isChecked();
+        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        hasChocolate = chocolateCheckBox.isChecked();
+
         // Is the view now checked?
-        boolean checked = ((CheckBox) view).isChecked();
+    //    boolean checked = ((CheckBox) view).isChecked();
 
         // check the hasWhippedCream state
-        if (checked)
-            hasWhippedCream = true;
-        else
-            hasWhippedCream = false;
+    //    if (checked)
+    //        hasWhippedCream = true;
+    //    else
+    //        hasWhippedCream = false;
 
     }
 
@@ -67,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     private String createOrderSummary(int price){
         String orderSummary = "Name: Kaptain Kunal";
         orderSummary += "\nAdd whipped cream? " + hasWhippedCream;
+        orderSummary += "\nAdd chocolate? " + hasChocolate;
         orderSummary += "\nQuantity: " + quantity;
         orderSummary += "\nTotal : $" + price;
         orderSummary += "\nThank you!";
