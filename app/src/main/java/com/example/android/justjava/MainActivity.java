@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     boolean hasWhippedCream = false;
     // chocolate checkbox variable
     boolean hasChocolate = false;
+    // user name variable
+    String userName = "anonymous";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = calculatePrice();
+
+        EditText editText = (EditText) findViewById(R.id.user_name);
+        userName = editText.getText().toString();
 
         String orderSummaryBook = createOrderSummary(price);
         displayMessage(orderSummaryBook);
@@ -64,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * This method receive name input
+     */
+    //public void nameInput(View view){
+
+    //}
+
+    /**
      * Calculates the price of the order.
      *
      * @return total price
@@ -79,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
      * @return text summary
      */
     private String createOrderSummary(int price){
-        String orderSummary = "Name: Kaptain Kunal";
+        String orderSummary = "Name: " + userName;
         orderSummary += "\nAdd whipped cream? " + hasWhippedCream;
         orderSummary += "\nAdd chocolate? " + hasChocolate;
         orderSummary += "\nQuantity: " + quantity;
