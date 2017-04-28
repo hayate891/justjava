@@ -1,8 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Just Java</string>
-    <string name="thank_you">Gracias!</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Title for the application. [CHAR LIMIT=12] -->
+    <string name="app_name">Sólo Java</string>
+
+    <!-- Hint text display in the empty field for the user's name [CHAR LIMIT=20] -->
+    <string name="hint_name">Nombre</string>
+
+    <!-- Header text for the list of toppings [CHAR LIMIT=20] -->
     <string name="toppings">Ingredientes</string>
-    <string name="order_summary_name"></string>
-    <string name="add_chocolate"></string>
+
+    <!-- The whipped cream toppings checkbox [CHAR LIMIT=NONE]-->
+    <string name="whipped_cream_checkbox">Crema batida</string>
+
+    <!-- The chocolate toppings checkbox [CHAR LIMIT=NONE]-->
+    <string name="chocolate_checkbox">Chocolate</string>
+
+    <!-- Header text for quantity of coffee {CHAR LIMIT=NONE]-->
+    <string name="quantity">Cantidad</string>
+
+    <!-- Initial value of quantity [CHAR LIMIT=NONE] -->
+    <string name="initial_quantity">2</string>
+
+    <!-- The order checkbox [CHAR LIMIT=NONE] -->
+    <string name="order">Ordenar</string>
+
+    <!-- The user's name for the order summary [CHAR LIMIT=NONE] -->
+    <string name="order_summary_name">Nombre: <xliff:g id="userName" example="Amy">%s</xliff:g></string>
+
+    <!-- Ask user if they want to add whipped cream? [CHAR LIMIT=NONE]-->
+    <string name="order_summary_whipped_cream">Agregue la crema batida? <xliff:g id="hasWhippedCream" example="true">%b</xliff:g></string>
+
+    <!-- Ask user if they want to add chocolate? [CHAR LIMIT=NONE]-->
+    <string name="order_summary_chocolate">Agregue el chocolate? <xliff:g id="addWhippedCream" example="true">%b</xliff:g></string>
+
+    <!-- Display quantity of coffee [CHAR LIMIT=NONE]-->
+    <string name="order_summary_quantity">Cantidad: <xliff:g id="quantity" example="2">%d</xliff:g></string>
+
+    <!-- Display total price of coffee [CHAR LIMIT=NONE] -->
+    <string name="order_summary_price">Total: <xliff:g id="price" example="$10">%s</xliff:g></string>
+
+    <!-- Thank you message for the order summary. [CHAR LIMIT=NONE] -->
+    <string name="thank_you">¡Gracias!</string>
+
+    <!--
+      Subject line for the order summary email. It will be in the format of
+      "Just Java order for Amy" where Amy is the user's name. [CHAR LIMIT=NONE]
+    -->
+    <string name="order_summary_email_subject">Sólo java para <xliff:g id="userName" example="Amy">%s</xliff:g></string>
 </resources>

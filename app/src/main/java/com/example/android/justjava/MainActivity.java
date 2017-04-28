@@ -21,10 +21,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     // quantity of coffee
     int quantity = 1;
-    // whipped cream checkbox variable
-    boolean hasWhippedCream = false;
-    // chocolate checkbox variable
-    boolean hasChocolate = false;
     // user name variable
     String userName = "anonymous";
     // whipped cream price is $1
@@ -44,13 +40,23 @@ public class MainActivity extends AppCompatActivity {
      * Intent is use to send the order summary to email by using email intent
      */
     public void submitOrder(View view) {
-        int price = calculatePrice();
+
 
         // Find the user's name
         EditText editTextUserName = (EditText) findViewById(R.id.user_name);
         userName = editTextUserName.getText().toString();
 
-        String priceMessage = createOrderSummary(price);
+        // figure out if user want whipped cream
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        boolean addWhippedCream = whippedCreamCheckBox.isChecked();
+        // figure out if user want chocolate
+        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        boolean addChocolate = chocolateCheckBox.isChecked();
+
+        int price = calculatePrice(addWhippedCream, addChocolate);
+        String stringPrice = "" + price;
+
+        String priceMessage = createOrderSummary(price, userName, addWhippedCream, addChocolate, quantity);
         displayMessage(priceMessage);
 
 //        // Disabling this intent because it can't be use in the emulator
@@ -64,48 +70,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * The method check on the whipped cream checkbox state
-     * this method is not wrong but different than what Katherine
-     * use in the tutorial
-     * Katherine use casting on the CheckBox subclass
-     */
-    public void onCheckBoxClicked(View view) {
-        // figure out if user want whipped cream
-        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
-        hasWhippedCream = whippedCreamCheckBox.isChecked();
-        // figure out if user want chocolate
-        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
-        hasChocolate = chocolateCheckBox.isChecked();
-
-
-        // Is the view now checked?
-        //    boolean checked = ((CheckBox) view).isChecked();
-
-        // check the hasWhippedCream state
-        //    if (checked)
-        //        hasWhippedCream = true;
-        //    else
-        //        hasWhippedCream = false;
-
-    }
-
-    /**
      * Calculates the price of the order.
      *
      * @return total price
      */
-    private int calculatePrice() {
+    private int calculatePrice(boolean addWhippedCream, boolean addChocolate) {
         //int price = 5;
         // check if both hasWhippedCream and hasChocolate is true first
-        if (hasWhippedCream && hasChocolate) {
+        if (addWhippedCream && addChocolate) {
             return quantity * (5 + whippedCreamPrice + chocolatePrice);
         }
         // next check if hasChocolate is true
-        else if (hasChocolate) {
+        else if (addChocolate) {
             return quantity * (5 + chocolatePrice);
         }
         // and then check if hasWhippedCream is true
-        else if (hasWhippedCream) {
+        else if (addWhippedCream) {
             return quantity * (5 + whippedCreamPrice);
         }
         // if non of the checkbox is true then execute this statement
@@ -120,12 +100,12 @@ public class MainActivity extends AppCompatActivity {
      * @param price of the order
      * @return text summary
      */
-    private String createOrderSummary(int price) {
-        String orderSummary = getString(R.string.order_summary_name) + " " + userName;
-        orderSummary += "\n" + getString(R.string.add_whipped_cream) + " " + hasWhippedCream;
-        orderSummary += "\n" + getString(R.string.add_chocolate) + " " + hasChocolate;
-        orderSummary += "\n" + getString(R.string.order_summary_quantity) + " " + quantity;
-        orderSummary += "\n" + getString(R.string.total_price) + price;
+    private String createOrderSummary(int price, String userName, boolean addWhippedCream, boolean addChocolate, int quantity) {
+        String orderSummary = getString(R.string.order_summary_name, userName);
+        orderSummary += "\n" + getString(R.string.order_summary_whipped_cream, addWhippedCream);
+        orderSummary += "\n" + getString(R.string.order_summary_chocolate, addChocolate);
+        orderSummary += "\n" + getString(R.string.order_summary_quantity, quantity);
+        orderSummary += "\n" + getString(R.string.order_summary_price, "$" + price);
         orderSummary += "\n" + getString(R.string.thank_you);
         return orderSummary;
     }
