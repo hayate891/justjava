@@ -1,3 +1,38 @@
-<resources>
+<resources> xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Just Java</string>
+
+    <!-- The hint text that ask user to input their name [CHAR LIMIT=NONE]-->
+    <string name="hint_name">Name</string>
+    <!-- Header text for the list of toppings [CHAR LIMIT=20] -->
+    <string name="toppings">Toppings</string>
+    <!-- The whipped cream toppings checkbox [CHAR LIMIT=NONE]-->
+    <string name="whipped_cream_checkbox">Whipped Cream</string>
+    <!-- The chocolate toppings checkbox [CHAR LIMIT=NONE]-->
+    <string name="chocolate_checkbox">Chocolate</string>
+    <!-- Header text for quantity of coffee {CHAR LIMIT=NONE]-->
+    <string name="initial_quantity">Quantity</string>
+    <!-- Header text for order summary [CHAR LIMIT=NONE]-->
+    <string name="order_summary">Order Summary</string>
+    <!-- Total price of coffee [CHAR LIMIT=NONE] -->
+    <string name="initial_total_price">$5</string>
+    <!-- The order checkbox [CHAR LIMIT=NONE] -->
+    <string name="order_checkbox">Order</string>
+
+    <!-- The user name for the order summary [CHAR LIMIT=NONE] -->
+    <string name="order_summary_name">Name</string>
+    <!-- Ask user if they want to add whipped cream? [CHAR LIMIT=NONE]-->
+    <string name="add_whipped_cream">Add whipped cream?</string>
+    <!-- Ask user if they want to add chocolate? [CHAR LIMIT=NONE]-->
+    <string name="add_chocolate">Add chocolate?</string>
+    <!-- Display quantity of coffee [CHAR LIMIT=NONE]-->
+    <string name="order_summary_quantity">Quantity :</string>
+    <!-- Display total price of coffee [CHAR LIMIT=NONE] -->
+    <string name="total_price">Total : $</string>
+    <!-- Thank you message for the order summary. [CHAR LIMIT=NONE] -->
+    <string name="thank_you">Thank you!</string>
+
+    <!-- The text message for the user when their order exceed the possible amount [CHAR LIMIT=NONE] -->
+    <string name="not_more_than_100">You cannot have more than 100 cups of coffees</string>
+    <!-- The text message for the user when their order goes less than the possibe amount [CHAR LIMIT=NONE] -->
+    <string name="not_less_than_1">You cannot have less than 1 cup of coffee</string>
 </resources>

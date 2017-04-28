@@ -7,8 +7,6 @@ package com.example.android.justjava;
  * package com.example.android.justjava;
  */
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
     boolean hasChocolate = false;
     // user name variable
     String userName = "anonymous";
-    // raining state variable
-    boolean isRaining = false;
     // whipped cream price is $1
     // chocolate price is $2
     // base coffee price is $5
@@ -45,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is called when the order button is clicked.
+     * Intent is use to send the order summary to email by using email intent
      */
     public void submitOrder(View view) {
         int price = calculatePrice();
@@ -56,13 +53,14 @@ public class MainActivity extends AppCompatActivity {
         String priceMessage = createOrderSummary(price);
         displayMessage(priceMessage);
 
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + userName);
-        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
-        if (intent.resolveActivity(getPackageManager()) != null){
-            startActivity(intent);
-        }
+//        // Disabling this intent because it can't be use in the emulator
+//        Intent intent = new Intent(Intent.ACTION_SENDTO);
+//        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+//        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + userName);
+//        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+//        if (intent.resolveActivity(getPackageManager()) != null){
+//            startActivity(intent);
+//        }
     }
 
     /**
@@ -92,19 +90,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method receive name input
-     */
-    //public void nameInput(View view){
-
-    //}
-
-    /**
      * Calculates the price of the order.
      *
      * @return total price
      */
     private int calculatePrice() {
-        int price = 5;
+        //int price = 5;
         // check if both hasWhippedCream and hasChocolate is true first
         if (hasWhippedCream && hasChocolate) {
             return quantity * (5 + whippedCreamPrice + chocolatePrice);
@@ -130,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
      * @return text summary
      */
     private String createOrderSummary(int price) {
-        String orderSummary = "Name: " + userName;
-        orderSummary += "\nAdd whipped cream? " + hasWhippedCream;
-        orderSummary += "\nAdd chocolate? " + hasChocolate;
-        orderSummary += "\nQuantity: " + quantity;
-        orderSummary += "\nTotal : $" + price;
-        orderSummary += "\nThank you!";
+        String orderSummary = getString(R.string.order_summary_name) + " " + userName;
+        orderSummary += "\n" + getString(R.string.add_whipped_cream) + " " + hasWhippedCream;
+        orderSummary += "\n" + getString(R.string.add_chocolate) + " " + hasChocolate;
+        orderSummary += "\n" + getString(R.string.order_summary_quantity) + " " + quantity;
+        orderSummary += "\n" + getString(R.string.total_price) + price;
+        orderSummary += "\n" + getString(R.string.thank_you);
         return orderSummary;
     }
 
@@ -155,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
     public void increment(View view) {
         if (quantity == 100) {
             // Show an error message as a toast
-            Toast.makeText(this, "You cannot have more than 100 cups of coffees", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.not_more_than_100), Toast.LENGTH_SHORT).show();
             // Exit this method early because there's nothing left to do
             return;
         }
@@ -174,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
     public void decrement(View view) {
         if(quantity == 1){
             // Show an error message as a toast
-            Toast.makeText(this, "You cannot have less than 1 cup of coffee", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.not_less_than_1), Toast.LENGTH_SHORT).show();
             // Exit this method ear;y because there's nothing left to do
             return;
         }
