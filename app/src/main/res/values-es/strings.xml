@@ -21,6 +21,9 @@
     <!-- Initial value of quantity [CHAR LIMIT=NONE] -->
     <string name="initial_quantity">2</string>
 
+    <!-- Total price of coffee [CHAR LIMIT=NONE] -->
+    <string name="initial_total_price">$10</string>
+
     <!-- The order checkbox [CHAR LIMIT=NONE] -->
     <string name="order">Ordenar</string>
 
@@ -28,10 +31,15 @@
     <string name="order_summary_name">Nombre: <xliff:g id="userName" example="Amy">%s</xliff:g></string>
 
     <!-- Ask user if they want to add whipped cream? [CHAR LIMIT=NONE]-->
-    <string name="order_summary_whipped_cream">Agregue la crema batida? <xliff:g id="hasWhippedCream" example="true">%b</xliff:g></string>
+    <string name="order_summary_whipped_cream">Agregue la crema batida? <xliff:g id="addWhippedCream" example="true">%s</xliff:g></string>
 
     <!-- Ask user if they want to add chocolate? [CHAR LIMIT=NONE]-->
-    <string name="order_summary_chocolate">Agregue el chocolate? <xliff:g id="addWhippedCream" example="true">%b</xliff:g></string>
+    <string name="order_summary_chocolate">Agregue el chocolate? <xliff:g id="addChocolate" example="true">%s</xliff:g></string>
+
+    <!-- This a string of yes, used when user wants a topping [CHAR LIMIT=NONE] -->
+    <string name="yes">Yes</string>
+    <!-- This a string of no, used when user dont want a topping [CHAR LIMIT=NONE] -->
+    <string name="no">No</string>
 
     <!-- Display quantity of coffee [CHAR LIMIT=NONE]-->
     <string name="order_summary_quantity">Cantidad: <xliff:g id="quantity" example="2">%d</xliff:g></string>
@@ -47,4 +55,10 @@
       "Just Java order for Amy" where Amy is the user's name. [CHAR LIMIT=NONE]
     -->
     <string name="order_summary_email_subject">Sólo java para <xliff:g id="userName" example="Amy">%s</xliff:g></string>
+
+    <!-- This message appear when user try to order more than 100 cups of coffees [CHAR LIMIT=NONE] -->
+    <string name="not_more_than_100">No se pueden pedir más de 100 cafés.</string>
+
+    <!-- This message appeat when user try to order less than 1 cup of coffee [CHAR LIMIT=NONE] -->
+    <string name="not_less_than_1">No se pueden pedir menos de 1 café.</string>
 </resources>

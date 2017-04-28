@@ -15,14 +15,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+
 /**
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
     // quantity of coffee
-    int quantity = 1;
+    int quantity = 2;
     // user name variable
-    String userName = "anonymous";
+    String name = "anonymous";
     // whipped cream price is $1
     // chocolate price is $2
     // base coffee price is $5
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Find the user's name
         EditText editTextUserName = (EditText) findViewById(R.id.user_name);
-        userName = editTextUserName.getText().toString();
+        name = editTextUserName.getText().toString();
 
         // figure out if user want whipped cream
         CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
@@ -54,9 +56,8 @@ public class MainActivity extends AppCompatActivity {
         boolean addChocolate = chocolateCheckBox.isChecked();
 
         int price = calculatePrice(addWhippedCream, addChocolate);
-        String stringPrice = "" + price;
 
-        String priceMessage = createOrderSummary(price, userName, addWhippedCream, addChocolate, quantity);
+        String priceMessage = createOrderSummary(name, addWhippedCream, addChocolate, price);
         displayMessage(priceMessage);
 
 //        // Disabling this intent because it can't be use in the emulator
@@ -94,18 +95,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+//    // this method failed. so im disabling it for now
+//    /**
+//     * This method will change boolean to yes or no
+//     */
+//    public String boolToString(boolean addWhippedCream){
+//        return bool ? getString(R.string.yes) : getString(R.string.no);
+//    }
+
+    /**
+     * THis method will change boolean addWhippedCream or addChocolate to yes or no
+     * @param bool bool will accept any boolean input
+     * @return returning string yes or no
+     */
+    public String boolToString(boolean bool){
+        if (bool)
+            return getString(R.string.yes);
+        else
+            return getString(R.string.no);
+    }
+
     /**
      * This method create summary of the order that contain name, quantity and price
      *
      * @param price of the order
      * @return text summary
      */
-    private String createOrderSummary(int price, String userName, boolean addWhippedCream, boolean addChocolate, int quantity) {
-        String orderSummary = getString(R.string.order_summary_name, userName);
-        orderSummary += "\n" + getString(R.string.order_summary_whipped_cream, addWhippedCream);
-        orderSummary += "\n" + getString(R.string.order_summary_chocolate, addChocolate);
+    private String createOrderSummary(String name, boolean addWhippedCream, boolean addChocolate, int price) {
+        String orderSummary = getString(R.string.order_summary_name, name);
+        orderSummary += "\n" + getString(R.string.order_summary_whipped_cream, boolToString(addWhippedCream));
+        orderSummary += "\n" + getString(R.string.order_summary_chocolate, boolToString(addChocolate));
         orderSummary += "\n" + getString(R.string.order_summary_quantity, quantity);
-        orderSummary += "\n" + getString(R.string.order_summary_price, "$" + price);
+        orderSummary += "\n" + getString(R.string.order_summary_price, NumberFormat.getCurrencyInstance().format(price));
         orderSummary += "\n" + getString(R.string.thank_you);
         return orderSummary;
     }
